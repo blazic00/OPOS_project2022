@@ -17,10 +17,13 @@ for(int i = 0; i < 7; i++)
     var bmp = new Bitmap(path + Path.DirectorySeparatorChar + "koala.jpg");
     images.Add(bmp);
 }
-MyTask task = new MyTask(Algorithm.PixelateImages);
-task.Images = images;
+MyTask task1 = new MyTask(Algorithm.PixelateImages);
+task1.Images = images;
+MyTask task2 = new MyTask(Algorithm.PixelateImages);
+task2.Images = images;
 
-taskScheduler.ScheduleTask(task);
+taskScheduler.ScheduleTask(task1);
+taskScheduler.ScheduleTask(task2);
 
 
 
@@ -38,9 +41,9 @@ foreach(var task in tasks)
 while (true)
 {
     int number = int.Parse(Console.ReadLine());
-    taskScheduler.PauseTask(task);
+    taskScheduler.PauseTask(task1);
     number = int.Parse(Console.ReadLine());
-    taskScheduler.ContinueTask(task);
+    taskScheduler.ContinueTask(task1);
 }
 
 

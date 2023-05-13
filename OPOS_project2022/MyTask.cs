@@ -20,7 +20,7 @@ namespace OPOS_project2022
         private Task task;
         public Action<MyTask> OnJobFinished { set; get; }
 
-        public MyTask(Action<SemaphoreSlim, List<Bitmap>> taskAction)
+        public MyTask(Action<SemaphoreSlim, List<Bitmap>,int,bool,int> taskAction)
         {
             TaskId = taskIds++;
             task = new Task(() =>
@@ -28,7 +28,7 @@ namespace OPOS_project2022
                 try
                 {
                     Console.WriteLine(TaskId + " started!");
-                    taskAction.Invoke(SemaphoreSlim,Images);
+                    taskAction.Invoke(SemaphoreSlim,Images,1,true,this.TaskId);
                 }
                 finally
                 {
