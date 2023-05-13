@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +14,13 @@ namespace OPOS_project2022
         public int TaskId { get; set; }
         public SemaphoreSlim SemaphoreSlim { get; } = new SemaphoreSlim(1);
 
+        public List<Bitmap> Images { get; set; }
 
-       /* private enum JobState
-        {
-            NotStarted,
-            Running,
-            Finished,
-            Paused
-        }
-        private JobState jobState=JobState.NotStarted;*/
 
         private Task task;
         public Action<MyTask> OnJobFinished { set; get; }
 
-        public MyTask(Action<SemaphoreSlim> taskAction)
+        public MyTask(Action<SemaphoreSlim, List<Bitmap>> taskAction)
         {
             TaskId = taskIds++;
             task = new Task(() =>
@@ -34,7 +28,7 @@ namespace OPOS_project2022
                 try
                 {
                     Console.WriteLine(TaskId + " started!");
-                    taskAction.Invoke(SemaphoreSlim);
+                    taskAction.Invoke(SemaphoreSlim,Images);
                 }
                 finally
                 {

@@ -1,15 +1,30 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-//Task.Run(() => Console.WriteLine("Blabla"));
-
-
 
 using OPOS_project2022;
+using System.Drawing;
 
 MyTaskScheduler taskScheduler = new MyTaskScheduler();
 taskScheduler.maxConcurrentTasks = 3;
 
-var tasks = new List<MyTask>();
+
+
+
+var path = MetaData.ProjectPath;
+var images = new List<Bitmap>();
+for(int i = 0; i < 7; i++)
+{
+    var bmp = new Bitmap(path + Path.DirectorySeparatorChar + "koala.jpg");
+    images.Add(bmp);
+}
+MyTask task = new MyTask(Algorithm.PixelateImages);
+task.Images = images;
+
+taskScheduler.ScheduleTask(task);
+
+
+
+/*var tasks = new List<MyTask>();
 for (int i = 0; i < 6; i++)
 {
     tasks.Add(new MyTask(Function));
@@ -19,19 +34,13 @@ foreach(var task in tasks)
 {
     taskScheduler.ScheduleTask(task);
 }
-
+*/
 while (true)
 {
-    int number1 = int.Parse(Console.ReadLine());
-    taskScheduler.PauseTask(tasks[number1]);
-    int number2 = int.Parse(Console.ReadLine());
-    taskScheduler.PauseTask(tasks[number2]);
-
-    number1 = int.Parse(Console.ReadLine());
-    taskScheduler.ContinueTask(tasks[number1]);
-
-    number2 = int.Parse(Console.ReadLine());
-    taskScheduler.ContinueTask(tasks[number2]);
+    int number = int.Parse(Console.ReadLine());
+    taskScheduler.PauseTask(task);
+    number = int.Parse(Console.ReadLine());
+    taskScheduler.ContinueTask(task);
 }
 
 
