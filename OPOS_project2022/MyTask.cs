@@ -28,7 +28,8 @@ namespace OPOS_project2022
                 try
                 {
                     Console.WriteLine(TaskId + " started!");
-                    taskAction.Invoke(SemaphoreSlim,Images,1,true,this.TaskId);
+                    //Hardkodovano!
+                    taskAction.Invoke(SemaphoreSlim,Images,1,false,this.TaskId);
                 }
                 finally
                 {

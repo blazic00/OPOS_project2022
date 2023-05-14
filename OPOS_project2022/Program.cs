@@ -5,22 +5,25 @@ using OPOS_project2022;
 using System.Drawing;
 
 MyTaskScheduler taskScheduler = new MyTaskScheduler();
-taskScheduler.maxConcurrentTasks = 3;
+taskScheduler.MaxConcurrentTasks = 3;
 
 
 
 
 var path = MetaData.ProjectPath;
-var images = new List<Bitmap>();
-for(int i = 0; i < 7; i++)
+var images1= new List<Bitmap>();
+var images2 = new List<Bitmap>();
+for (int i = 0; i < 20; i++)
 {
-    var bmp = new Bitmap(path + Path.DirectorySeparatorChar + "koala.jpg");
-    images.Add(bmp);
+    var bmp1 = new Bitmap(path + Path.DirectorySeparatorChar + "koala.jpg");
+    images1.Add(bmp1);
+    var bmp2 = new Bitmap(path + Path.DirectorySeparatorChar + "koala.jpg");
+    images2.Add(bmp2);
 }
 MyTask task1 = new MyTask(Algorithm.PixelateImages);
-task1.Images = images;
+task1.Images = images1;
 MyTask task2 = new MyTask(Algorithm.PixelateImages);
-task2.Images = images;
+task2.Images = images2;
 
 taskScheduler.ScheduleTask(task1);
 taskScheduler.ScheduleTask(task2);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,14 @@ namespace OPOS_project2022
 
 
         //ne razumijem ove getere i setere!
-        public int maxConcurrentTasks{ get; set; } = 1;
+        public int MaxConcurrentTasks{ get; set; } = 1;
 
         private Queue<MyTask> scheduledTasks = new Queue<MyTask>();
         private HashSet<MyTask> runningTasks = new HashSet<MyTask>();
         private HashSet<MyTask> pausedTasks = new HashSet<MyTask>();
+
+
+        //public Dictionary<MyTask, List<Bitmap> 
 
         
 
@@ -61,7 +65,7 @@ namespace OPOS_project2022
             {
                 lock (this)
                 {
-                    if (runningTasks.Count < maxConcurrentTasks)
+                    if (runningTasks.Count < MaxConcurrentTasks)
                     {
                         MyTask task = scheduledTasks.Dequeue();
                         runningTasks.Add(task);

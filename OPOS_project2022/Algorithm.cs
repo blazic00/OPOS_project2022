@@ -66,12 +66,12 @@ namespace OPOS_project2022
                 if (SIMD)
                 {
                     var bmpPix = PixelatedBitmapParallel(images[i]);
-                    SaveImage(bmpPix, id);
+                   // SaveImage(bmpPix, id);
                 }
                 else
                 { 
                     var bmpPix= PixelatedBitmap(images[i],PixelationFactor);
-                    SaveImage(bmpPix, id);
+                   // SaveImage(bmpPix, id);
                 }
                 semaphore.Release();
             }
